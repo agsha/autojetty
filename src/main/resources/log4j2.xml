@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="ERROR" monitorInterval="5">
+    <Appenders>
+        <Console name="CONSOLE" target="SYSTEM_OUT" >
+            <Pattern>%d %p %L - %m%n</Pattern>
+        </Console>
+        <!--<Socket name="socket" host="localhost" port="4445">-->
+        <!--<SerializedLayout />-->
+        <!--</Socket>-->
+        <RollingFile name="RollingFile" fileName="app.log"
+                     filePattern="app-%i.log">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="1 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="5"/>
+        </RollingFile>
+
+    </Appenders>
+    <Loggers>
+        <Root level="error">
+            <AppenderRef ref="CONSOLE" />
+        </Root>
+
+        <Logger name="autojetty" level="all"/>
+
+    </Loggers>
+</Configuration>
